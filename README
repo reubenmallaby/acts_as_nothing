@@ -5,7 +5,11 @@ Rails plugin to provide an easy way of setting default text for fields that may 
 
 Instead of having ugly code in your views like <%= item.name.nil? ? 'My default text' : item.name %>, you just need item.name and configure the default text in the model.
 
+You can pass a prefix as a parameter if required like <%= item.name("prefix") %>
+
 The method acts_as_nothing takes a hash of field name and default text for configuration.
+
+Providing an fieldname that does not exist in the model will create a readonly method with the given name that returns the text given.
 
 Example
 =======
@@ -16,5 +20,27 @@ Example
     )
   end	
 
+View
+====
+
+(With user.name as 'Bob')
+
+  <%= user.name %>
+
+Produces 'Bob'
+
+  <%= user.name("by") %>
+
+Produces 'by Bob'
+
+(or user.name as nil)
+
+  <%= user.name %>
+
+Produces 'Anonymous'
+
+  <%= user.name('by') %>
+
+Produce 'by Anonymous'
 
 Copyright (c) 2010 Reuben Mallaby, released under the MIT license
