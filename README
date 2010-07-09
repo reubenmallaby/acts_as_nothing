@@ -1,0 +1,20 @@
+ActsAsNothing
+=============
+
+Rails plugin to provide an easy way of setting default text for fields that may be nil.
+
+Instead of having ugly code in your views like <%= item.name.nil? ? 'My default text' : item.name %>, you just need item.name and configure the default text in the model.
+
+The method acts_as_nothing takes a hash of field name and default text for configuration.
+
+Example
+=======
+
+  class User << ActiveRecord::Base
+    acts_as_nothing(
+      :name => "Anonymous"
+    )
+  end	
+
+
+Copyright (c) 2010 Reuben Mallaby, released under the MIT license
