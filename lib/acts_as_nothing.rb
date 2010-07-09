@@ -12,9 +12,10 @@ module TotallySoft
     module Config
       def acts_as_nothing(options = {})
         options.each do |method, default|
-          self.send :define_method, method.to_sym do
-            value = read_attribute(:length)
-            value.nil? ? default : value     
+          default = "" if default.nil?
+          self.send :define_method, method.to_sym do |pre = nil|
+            value = read_attribute(method.to_sym)
+            (pre.nil? ? "" : pre + " ") + (value.nil? ? default :  value)     
           end
         end
       end
